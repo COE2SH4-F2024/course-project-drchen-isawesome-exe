@@ -120,12 +120,12 @@ void DrawScreen(void)
     objPos obj1(3, 4, '@');
     int itemPrinted = 0; // Flag to check if an item was printed
 
-    for (i = 0; i < 10; i++) // 10 vertical #
+    for (i = 0; i < gm->getBoardSizeY(); i++) // 10 vertical #
     {
-        for (j = 0; j < 20; j++) // 20 horizontal #
+        for (j = 0; j < gm->getBoardSizeX(); j++) // 20 horizontal #
         {
             itemPrinted = 0;
-            if ((i == 0 || i == 9) || (j == 0 || j == 19)) // checking if it's on the border
+            if ((i == 0 || i == gm->getBoardSizeY()-1) || (j == 0 || j == gm->getBoardSizeX()-1)) // checking if it's on the border
             {
                 MacUILib_printf("#");
                 itemPrinted = 1; // Mark that an item was printed
@@ -157,7 +157,7 @@ void LoopDelay(void)
 
 void CleanUp(void)
 {
-    MacUILib_clearScreen();    
+    // MacUILib_clearScreen();    
 
     MacUILib_uninit();
 
