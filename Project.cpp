@@ -50,6 +50,7 @@ using namespace std;
 #define DELAY_CONST 100000
 
 bool exitFlag;
+
 GameMechs* gm;
 
 void Initialize(void);
