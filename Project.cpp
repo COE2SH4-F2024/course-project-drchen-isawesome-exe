@@ -2,45 +2,45 @@
 #include "MacUILib.h"
 #include "objPos.h"
 
-#include "GameMechs.h" 
-// another include
+#include "GameMechs.h"
+#include "Player.h" 
 
-//I'm supposed to package the Player class into the .cpp and .h files later...
-class Player
-{
+
+// class Player
+// {
     
-    public:
-        enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
+//     public:
+//         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
-        Player(GameMechs* thisGMRef){
-            mainGameMechsRef = thisGMRef;
-            myDir = STOP;
+//         Player(GameMechs* thisGMRef){
+//             mainGameMechsRef = thisGMRef;
+//             myDir = STOP;
 
-            playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-            playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-            playerPos.symbol = '*';
-        }
+//             playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+//             playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//             playerPos.symbol = '*';
+//         }
        
-        ~Player(){
-            delete[] mainGameMechsRef;
-        }
+        // ~Player(){
+        //     delete[] mainGameMechsRef;
+        // }
 
         // objPos getPlayerPos() const; // Upgrade this in iteration 3.       
         // void updatePlayerDir();
         // void movePlayer();
 
         // More methods to be added here
-        objPos const getPlayerPos() {
-            return playerPos;
-        }
+        // objPos const getPlayerPos() {
+        //     return playerPos;
+        // }
 
-    private:
-        objPos playerPos; // Upgrade this in iteration 3.       
-        enum Dir myDir;
+    // private:
+    //     objPos playerPos; // Upgrade this in iteration 3.       
+    //     enum Dir myDir;
 
-        // Need a reference to the Main Game Mechanisms
-        GameMechs* mainGameMechsRef;
-};
+    //     // Need a reference to the Main Game Mechanisms
+    //     GameMechs* mainGameMechsRef;
+// };
 
 Player* player;
 
@@ -145,9 +145,6 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
-    
-    
-
 
 
 }
