@@ -85,11 +85,10 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
-    Player* player = new Player(gm);
-
     exitFlag = false;
 
     gm = new GameMechs();
+    player = new Player(gm);
 
 }
 
