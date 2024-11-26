@@ -50,7 +50,8 @@ using namespace std;
 #define DELAY_CONST 100000
 
 bool exitFlag;
-GameMechs * gm;
+
+GameMechs* gm;
 
 void Initialize(void);
 void GetInput(void);

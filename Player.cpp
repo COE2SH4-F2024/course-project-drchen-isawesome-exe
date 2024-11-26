@@ -17,6 +17,7 @@ Player::Player(GameMechs* thisGMRef)
 
 Player::~Player()
 {
+    delete[] mainGameMechsRef;
     // delete any heap members here
 }
 
