@@ -2,8 +2,48 @@
 #include "MacUILib.h"
 #include "objPos.h"
 
-#include "GameMechs.h"
+#include "GameMechs.h" 
 // another include
+
+//I'm supposed to package the Player class into the .cpp and .h files later...
+class Player
+{
+    
+    public:
+        enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
+
+        Player(GameMechs* thisGMRef){
+            mainGameMechsRef = thisGMRef;
+            myDir = STOP;
+
+            playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+            playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+            playerPos.symbol = '*';
+        }
+       
+        ~Player(){
+            delete[] mainGameMechsRef;
+        }
+
+        // objPos getPlayerPos() const; // Upgrade this in iteration 3.       
+        // void updatePlayerDir();
+        // void movePlayer();
+
+        // More methods to be added here
+        objPos const getPlayerPos() {
+            return playerPos;
+        }
+
+    private:
+        objPos playerPos; // Upgrade this in iteration 3.       
+        enum Dir myDir;
+
+        // Need a reference to the Main Game Mechanisms
+        GameMechs* mainGameMechsRef;
+};
+
+Player* player;
+
 
 using namespace std;
 
@@ -43,6 +83,8 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
+    Player* player = new Player(gm);
+
     exitFlag = false;
 }
 
@@ -72,7 +114,7 @@ void DrawScreen(void)
         {
             itemPrinted = 0;
             if ((i == 0 || i == 9) || (j == 0 || j == 19)) // checking if it's on the border
-            {   
+            {
                 MacUILib_printf("#");
                 itemPrinted = 1; // Mark that an item was printed
             }
@@ -91,8 +133,8 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
-
-
+    
+    
 
 
 
