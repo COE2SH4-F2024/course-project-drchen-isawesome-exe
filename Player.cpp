@@ -6,6 +6,11 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
+    playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+    playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    playerPos.symbol = '@';
+
+
     // more actions to be included
     playerPos.pos->x = mainGameMechsRef->getBoardSizeX()/2; // start player position in the middle
     playerPos.pos->y = mainGameMechsRef->getBoardSizeY()/2;
@@ -21,6 +26,7 @@ Player::~Player()
 objPos Player::getPlayerPos() const
 {
     // return the reference to the playerPos arrray list
+    return playerPos;
 }
 
 void Player::updatePlayerDir()
