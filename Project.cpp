@@ -105,6 +105,7 @@ void RunLogic(void)
         if(gm->getInput() == 27) 
             gm->setExitTrue(); // exit is ESC
     }
+
     // myPlayer->movePlayer();
 
     gm->clearInput();
@@ -146,7 +147,10 @@ void DrawScreen(void)
         MacUILib_printf("\n");
     }
 
+    MacUILib_printf("Score: %d \n",gm->getScore());
 
+    if(gm->getLoseFlagStatus() == true)
+        MacUILib_printf("You lost :(");
 }
 
 void LoopDelay(void)
