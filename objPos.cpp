@@ -27,12 +27,17 @@ objPos::~objPos()
 
 objPos::objPos(const objPos &o)
 {
-    pos = o.pos;
+    pos = new Pos;
+    pos->x = o.pos->x;
+    pos->y = o.pos->y;
+    symbol = o.symbol;
 }
 
 objPos& objPos::operator=(const objPos &o){
     if(this != &o){
-        pos = o.pos;
+        pos->x = o.pos->x;
+        pos->y = o.pos->y;
+        symbol = o.symbol;
     }
     return *this;
 }
