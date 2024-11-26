@@ -2,6 +2,9 @@
 #include "MacUILib.h"
 #include "objPos.h"
 
+#include "GameMechs.h"
+// another include
+
 using namespace std;
 
 #define DELAY_CONST 100000
@@ -50,12 +53,14 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    
+   // myPlayer->movePlayer();
 }
 
 void DrawScreen(void)
 {
-    MacUILib_clearScreen();    
+    MacUILib_clearScreen(); 
+
+    // how to draw the board paste in here   
 }
 
 void LoopDelay(void)

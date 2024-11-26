@@ -2,7 +2,11 @@
 
 GameMechs::GameMechs()
 {
-    
+    // input = 0;
+    // score = 0;
+
+    // boardSizeX = 20;
+    // boardSizeY = 10;
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -18,7 +22,7 @@ GameMechs::~GameMechs()
 
 bool GameMechs::getExitFlagStatus() const
 {
-
+    // return exitFlag;
 }
 
 bool GameMechs::getLoseFlagStatus() const
@@ -27,9 +31,15 @@ bool GameMechs::getLoseFlagStatus() const
 }
     
 
-char GameMechs::getInput() const
+char GameMechs::getInput() const // remove const??
 {
+    // if(MacUILib_hasChar())
+    // {
+    //     input = MacUILib_getChar();
+    // }
 
+    // if(input == ' ') exitFlag = true;
+    // return input;
 }
 
 int GameMechs::getScore() const
