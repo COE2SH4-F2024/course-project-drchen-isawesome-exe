@@ -32,7 +32,7 @@ class GameMechs
         bool getLoseFlagStatus() const;
         void setLoseFlag();
 
-        char getInput() const;
+        char getInput(); //const; should this be removed?
         void setInput(char this_input);
         void clearInput();
 
