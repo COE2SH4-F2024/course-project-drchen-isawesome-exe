@@ -78,7 +78,7 @@ void DrawScreen(void)
             }
             else if(i == obj1.pos->x && j == obj1.pos->y)
             {
-                MacUILib_printf("%c", obj1.getSymbol());
+                MacUILib_printf("%c", obj1.symbol);
                 itemPrinted = 1;
             }
             {
