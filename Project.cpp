@@ -63,18 +63,24 @@ void DrawScreen(void)
     //  2. Iterate through each character location on the game board
     //     using the nested for-loop row-scanning setup.
     int i, j, k;
+    objPos obj1(3, 4, '@');
     int itemPrinted = 0; // Flag to check if an item was printed
+
     for (i = 0; i < 10; i++) // 10 vertical #
     {
         for (j = 0; j < 20; j++) // 20 horizontal #
         {
             itemPrinted = 0;
             if ((i == 0 || i == 9) || (j == 0 || j == 19)) // checking if it's on the border
-            {
+            {   
                 MacUILib_printf("#");
                 itemPrinted = 1; // Mark that an item was printed
             }
-            else
+            else if(i == obj1.pos->x && j == obj1.pos->y)
+            {
+                MacUILib_printf("%c", obj1.getSymbol());
+                itemPrinted = 1;
+            }
             {
 
                 if (!itemPrinted)
@@ -85,12 +91,9 @@ void DrawScreen(void)
         }
         MacUILib_printf("\n");
     }
-    
 
-    // [TODO]   Insert somewhere in the draw routine to draw the randomly generated items on the board.
 
-    // [TODO]   Display the "Mystery String" contents at the bottom of the game board
-    //          To help players keep track of their game progress.
+
 
 
 }
