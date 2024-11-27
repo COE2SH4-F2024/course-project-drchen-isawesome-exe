@@ -42,9 +42,6 @@
     //     GameMechs* mainGameMechsRef;
 // };
 
-Player* player;
-
-
 using namespace std;
 
 #define DELAY_CONST 100000
@@ -52,6 +49,7 @@ using namespace std;
 bool exitFlag;
 
 GameMechs* gm;
+Player* player;
 
 void Initialize(void);
 void GetInput(void);
@@ -104,10 +102,10 @@ void RunLogic(void)
     {
         if(gm->getInput() == 27) 
             gm->setExitTrue(); // exit is ESC
+        player->updatePlayerDir();
     }
 
-    // myPlayer->movePlayer();
-
+    player->movePlayer();
     gm->clearInput();
 }
 
@@ -118,10 +116,10 @@ void DrawScreen(void)
     //  2. Iterate through each character location on the game board
     //     using the nested for-loop row-scanning setup.
     int i, j, k;
-    objPos obj1(3, 4, '@');
+    // objPos obj1(3, 4, '@');
     int itemPrinted = 0; // Flag to check if an item was printed
 
-    for (i = 0; i < gm->getBoardSizeY(); i++) // 10 vertical #
+    for (i = 0; i < gm->getBoardSizeY(); i++) // 10 vertical #...rn its actually 15 and 30
     {
         for (j = 0; j < gm->getBoardSizeX(); j++) // 20 horizontal #
         {
@@ -131,23 +129,22 @@ void DrawScreen(void)
                 MacUILib_printf("#");
                 itemPrinted = 1; // Mark that an item was printed
             }
-            else if(i == obj1.pos->x && j == obj1.pos->y)
+            else if(i == player->getPlayerPos().pos->y && j == player->getPlayerPos().pos->x)
             {
-                MacUILib_printf("%c", obj1.symbol);
+                MacUILib_printf("%c", player->getPlayerPos().symbol); 
                 itemPrinted = 1;
             }
-            {
 
-                if (!itemPrinted)
-                {
-                    MacUILib_printf(" "); // Print space only if no item was printed
-                }
+            if (!itemPrinted)
+            {
+                MacUILib_printf(" "); // Print space only if no item was printed
             }
         }
         MacUILib_printf("\n");
     }
 
     MacUILib_printf("Score: %d \n",gm->getScore());
+
 
     if(gm->getLoseFlagStatus() == true)
         MacUILib_printf("You lost :(");
