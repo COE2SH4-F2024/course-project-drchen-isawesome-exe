@@ -18,8 +18,8 @@ void Food::generateFood(objPos blockOff)
 {
     srand((unsigned int)time(NULL));
     do {
-        int randX = (rand() % (30-1)) + 1; // change to work with any board size
-        int randY = (rand() % (15-1)) + 1; // change to work with any board size
+        int randX = (rand() % (30-2)) + 1; // change to work with any board size
+        int randY = (rand() % (15-2)) + 1; // change to work with any board size
 
         foodPos.setObjPos(randX, randY, 'o');
     } while(foodPos.pos->x == blockOff.pos->x && foodPos.pos->y == blockOff.pos->y);
