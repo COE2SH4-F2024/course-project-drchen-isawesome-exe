@@ -1,46 +1,11 @@
 #include <iostream>
+#include <stdlib.h>
 #include "MacUILib.h"
 #include "objPos.h"
 
 #include "GameMechs.h"
 #include "Player.h" 
-
-
-// class Player
-// {
-    
-//     public:
-//         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
-
-//         Player(GameMechs* thisGMRef){
-//             mainGameMechsRef = thisGMRef;
-//             myDir = STOP;
-
-//             playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-//             playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//             playerPos.symbol = '*';
-//         }
-       
-        // ~Player(){
-        //     delete[] mainGameMechsRef;
-        // }
-
-        // objPos getPlayerPos() const; // Upgrade this in iteration 3.       
-        // void updatePlayerDir();
-        // void movePlayer();
-
-        // More methods to be added here
-        // objPos const getPlayerPos() {
-        //     return playerPos;
-        // }
-
-    // private:
-    //     objPos playerPos; // Upgrade this in iteration 3.       
-    //     enum Dir myDir;
-
-    //     // Need a reference to the Main Game Mechanisms
-    //     GameMechs* mainGameMechsRef;
-// };
+#include "Food.h"
 
 using namespace std;
 
@@ -50,6 +15,7 @@ bool exitFlag;
 
 GameMechs* gm;
 Player* player;
+Food* food;
 
 void Initialize(void);
 void GetInput(void);
@@ -87,6 +53,8 @@ void Initialize(void)
 
     gm = new GameMechs();
     player = new Player(gm);
+    food = new Food();
+    food->generateFood(player->getPlayerPos());
 
 }
 
@@ -119,9 +87,9 @@ void DrawScreen(void)
     // objPos obj1(3, 4, '@');
     int itemPrinted = 0; // Flag to check if an item was printed
 
-    for (i = 0; i < gm->getBoardSizeY(); i++) // 10 vertical #...rn its actually 15 and 30
+    for (i = 0; i < gm->getBoardSizeY(); i++) // vertical #...rn its actually 15 and 30
     {
-        for (j = 0; j < gm->getBoardSizeX(); j++) // 20 horizontal #
+        for (j = 0; j < gm->getBoardSizeX(); j++) // horizontal #
         {
             itemPrinted = 0;
             if ((i == 0 || i == gm->getBoardSizeY()-1) || (j == 0 || j == gm->getBoardSizeX()-1)) // checking if it's on the border
@@ -134,6 +102,11 @@ void DrawScreen(void)
                 MacUILib_printf("%c", player->getPlayerPos().symbol); 
                 itemPrinted = 1;
             }
+            else if(i == food->getFoodPos().pos->y && j == food->getFoodPos().pos->x) // generating the food
+            {
+                MacUILib_printf("%c", food->getFoodPos().symbol);
+                itemPrinted = 1;
+            }
 
             if (!itemPrinted)
             {
@@ -144,6 +117,7 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Score: %d \n",gm->getScore());
+    MacUILib_printf("food pos: %d, %d", food->getFoodPos().pos->x, food->getFoodPos().pos->y);
 
 
     if(gm->getLoseFlagStatus() == true)
@@ -163,4 +137,5 @@ void CleanUp(void)
     MacUILib_uninit();
 
     delete [] gm;
+    delete [] food;
 }
