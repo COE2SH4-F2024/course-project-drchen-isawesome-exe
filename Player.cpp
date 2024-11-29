@@ -25,9 +25,21 @@ Player::Player(GameMechs* thisGMRef)
     listPos3.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
     listPos3.symbol = '*';
 
+    objPos listPos4;
+    listPos4.pos->x = mainGameMechsRef -> getBoardSizeX()/2+3;
+    listPos4.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    listPos4.symbol = '*';
+
+    objPos listPos5;
+    listPos5.pos->x = mainGameMechsRef -> getBoardSizeX()/2+4;
+    listPos5.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    listPos5.symbol = '*';
+
     playerPosList->insertHead(listPos);
     playerPosList->insertHead(listPos2);
     playerPosList->insertHead(listPos3);
+    playerPosList->insertHead(listPos4);
+    playerPosList->insertHead(listPos5);
 
     // more actions to be included
 }
