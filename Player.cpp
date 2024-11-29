@@ -101,19 +101,19 @@ void Player::movePlayer()
     //     playerPos.pos->y = mainGameMechsRef->getBoardSizeY();
     // }
 
-    if(playerPosList->getHeadElement().pos->x > mainGameMechsRef->getBoardSizeX()){
-        playerPosList->getHeadElement().pos->x = 1;
-    }
-    if(playerPosList->getHeadElement().pos->x < 1){
-        playerPosList->getHeadElement().pos->x = mainGameMechsRef->getBoardSizeX();
-    }
+    // if(playerPosList->getHeadElement().pos->x > mainGameMechsRef->getBoardSizeX()-2){
+    //     playerPosList->getHeadElement().pos->x = 1;
+    // }
+    // if(playerPosList->getHeadElement().pos->x == 1){
+    //     playerPosList->getHeadElement().pos->x = mainGameMechsRef->getBoardSizeX()-2;
+    // }
 
-    if(playerPosList->getHeadElement().pos->y > mainGameMechsRef->getBoardSizeY()){
-        playerPosList->getHeadElement().pos->y = 1;
-    }
-    if(playerPosList->getHeadElement().pos->y < 1){
-        playerPosList->getHeadElement().pos->y = mainGameMechsRef->getBoardSizeY();
-    }
+    // if(playerPosList->getHeadElement().pos->y > mainGameMechsRef->getBoardSizeY()-2){
+    //     playerPosList->getHeadElement().pos->y = 1;
+    // }
+    // if(playerPosList->getHeadElement().pos->y == 1){
+    //     playerPosList->getHeadElement().pos->y = mainGameMechsRef->getBoardSizeY()-2;
+    // }
 
     // the following four objPos objects determine the position of the new head element
     // depending on what direction the snake is going in
@@ -124,11 +124,21 @@ void Player::movePlayer()
     caseLeft.symbol = playerPosList->getHeadElement().symbol;
     // caseLeft.symbol = '-';
 
+    objPos caseLeftWrap;
+    caseLeftWrap.pos->x = mainGameMechsRef->getBoardSizeX()-2;
+    caseLeftWrap.pos->y = playerPosList->getHeadElement().pos->y;
+    caseLeftWrap.symbol = playerPosList->getHeadElement().symbol;
+
     objPos caseRight;
     caseRight.pos->x = playerPosList->getHeadElement().pos->x+1;
     caseRight.pos->y = playerPosList->getHeadElement().pos->y;
     caseRight.symbol = playerPosList->getHeadElement().symbol;
     // caseRight.symbol = '-';
+
+    objPos caseRightWrap;
+    caseRightWrap.pos->x = 1;
+    caseRightWrap.pos->y = playerPosList->getHeadElement().pos->y;
+    caseRightWrap.symbol = playerPosList->getHeadElement().symbol;
 
     objPos caseDown;
     caseDown.pos->x = playerPosList->getHeadElement().pos->x;
@@ -136,33 +146,85 @@ void Player::movePlayer()
     caseDown.symbol = playerPosList->getHeadElement().symbol;
     // caseDown.symbol = '-';
 
+    objPos caseDownWrap;
+    caseDownWrap.pos->x = playerPosList->getHeadElement().pos->x;
+    caseDownWrap.pos->y = 1;
+    caseDownWrap.symbol = playerPosList->getHeadElement().symbol;
+
     objPos caseUp;
     caseUp.pos->x = playerPosList->getHeadElement().pos->x;
     caseUp.pos->y = playerPosList->getHeadElement().pos->y-1;
     caseUp.symbol = playerPosList->getHeadElement().symbol;
     // caseUp.symbol = '-';
 
+    objPos caseUpWrap;
+    caseUpWrap.pos->x = playerPosList->getHeadElement().pos->x;
+    caseUpWrap.pos->y = mainGameMechsRef->getBoardSizeY()-2;
+    caseUpWrap.symbol = playerPosList->getHeadElement().symbol;
+
     switch(myDir){
         case LEFT:
         // default:
-            playerPosList->insertHead(caseLeft);
+            if(playerPosList->getHeadElement().pos->x == 1){
+                playerPosList->insertHead(caseLeftWrap);
+            } else {
+                playerPosList->insertHead(caseLeft);
+            }
             playerPosList->removeTail();
             break;
         case RIGHT:
-            playerPosList->insertHead(caseRight);
+            if(playerPosList->getHeadElement().pos->x >= mainGameMechsRef->getBoardSizeX()-2){
+                playerPosList->insertHead(caseRightWrap);
+            } else {  
+                playerPosList->insertHead(caseRight);
+            }
             playerPosList->removeTail();
             break;
         case DOWN:
-            playerPosList->insertHead(caseDown);
+            if(playerPosList->getHeadElement().pos->y >= mainGameMechsRef->getBoardSizeY()-2){
+                playerPosList->insertHead(caseDownWrap);
+            } else {
+                playerPosList->insertHead(caseDown);
+            }
             playerPosList->removeTail();
             break;
         case UP:
-            playerPosList->insertHead(caseUp);
+            if(playerPosList->getHeadElement().pos->y == 1){
+                playerPosList->insertHead(caseUpWrap);
+            } else {
+                playerPosList->insertHead(caseUp);
+            }
             playerPosList->removeTail();
             break;
         case STOP:
             break;
     }
+
+    // switch(myDir){
+    //     case LEFT:
+    //     // default:
+    //         playerPosList->insertHead(caseLeft);
+    //         playerPosList->removeTail();
+    //         break;
+    //     case RIGHT:
+    //         if(playerPosList->getHeadElement().pos->x > mainGameMechsRef->getBoardSizeX()-2){
+    //     playerPosList->getHeadElement().pos->x = 1;
+    //         } else {  
+    //         playerPosList->insertHead(caseRight);
+    //         playerPosList->removeTail();
+    //         }
+    //         break;
+    //     case DOWN:
+    //         playerPosList->insertHead(caseDown);
+    //         playerPosList->removeTail();
+    //         break;
+    //     case UP:
+    //         playerPosList->insertHead(caseUp);
+    //         playerPosList->removeTail();
+    //         break;
+    //     case STOP:
+    //         break;
+    // }
 }
 
 // More methods to be added
