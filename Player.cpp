@@ -9,21 +9,25 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList = new objPosArrayList;
     objPos listPos; //free at some point
 
-    // playerPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-    // playerPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    // playerPos.symbol = '@'; 
-
     listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
     listPos.symbol = '*'; 
 
-    // objPos listPos2;
-    // listPos2.pos->x = mainGameMechsRef -> getBoardSizeX()/2+1;
-    // listPos2.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    // listPos2.symbol = '@';
+    // the following two objPos are to test the snake movement with different sizes....
+
+    objPos listPos2;
+    listPos2.pos->x = mainGameMechsRef -> getBoardSizeX()/2+1;
+    listPos2.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    listPos2.symbol = '*';
+
+    objPos listPos3;
+    listPos3.pos->x = mainGameMechsRef -> getBoardSizeX()/2+2;
+    listPos3.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+    listPos3.symbol = '*';
 
     playerPosList->insertHead(listPos);
-    // playerPosList->insertHead(listPos2);
+    playerPosList->insertHead(listPos2);
+    playerPosList->insertHead(listPos3);
 
     // more actions to be included
 }
@@ -109,7 +113,7 @@ void Player::movePlayer()
     }
     if(playerPosList->getHeadElement().pos->y < 1){
         playerPosList->getHeadElement().pos->y = mainGameMechsRef->getBoardSizeY();
-    }\
+    }
 
     // the following four objPos objects determine the position of the new head element
     // depending on what direction the snake is going in

@@ -57,11 +57,10 @@ void Initialize(void)
     gm = new GameMechs();
     player = new Player(gm);
     food = new Food();
+
     // food->generateFood(player->getPlayerPos());
 
-    food->generateFood(player->getPlayerPos()->getHeadElement()); //this will only block off the head element lol
-
-    // objArray = new objPosArrayList();
+    food->generateFood(player->getPlayerPos()->getHeadElement()); //this will only block off the head element I think lol
 
 }
 
@@ -104,8 +103,6 @@ void DrawScreen(void)
                 MacUILib_printf("#");
                 itemPrinted = 1; // Mark that an item was printed
             }
- 
-            //playerPosList->getHeadElement().pos->x
 
             /// WHAT WE HAD BEFORE
             // else if(i == player->objArray->getHeadElement().pos->y && j == player->getPlayerPos().pos->x)
@@ -114,7 +111,8 @@ void DrawScreen(void)
             //     itemPrinted = 1;
             // }
             /// 
-            for(k=0;k<player->getPlayerPos()->getSize();k++){
+
+            for(k=0;k<player->getPlayerPos()->getSize();k++){ //look through every element of array list and print 
             if(i == player->getPlayerPos()->getElement(k).pos->y && j == player->getPlayerPos()->getElement(k).pos->x)
             {
                 MacUILib_printf("%c", player->getPlayerPos()->getElement(k).symbol); 
