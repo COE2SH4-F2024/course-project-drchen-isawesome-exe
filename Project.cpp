@@ -156,4 +156,5 @@ void CleanUp(void)
 
     delete [] gm;
     delete [] food;
+    delete [] player;
 }
