@@ -79,6 +79,7 @@ void objPosArrayList::insertTail(objPos thisPos)
 
         return;
     }
+    
     aList[listSize].pos->x = thisPos.pos->x; 
     aList[listSize].pos->y = thisPos.pos->y;
     aList[listSize].symbol = thisPos.symbol;
