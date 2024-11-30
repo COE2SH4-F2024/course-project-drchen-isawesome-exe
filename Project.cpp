@@ -117,7 +117,7 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Score: %d \n",gm->getScore());
-    MacUILib_printf("food pos: %d, %d", food->getFoodPos().pos->x, food->getFoodPos().pos->y);
+    // MacUILib_printf("food pos: %d, %d", food->getFoodPos().pos->x, food->getFoodPos().pos->y);
 
 
     if(gm->getLoseFlagStatus() == true)
