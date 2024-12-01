@@ -19,6 +19,9 @@ class Food
         Food();
         ~Food();
 
+        Food(const Food& d);
+		Food& operator = (const Food& d);
+
         void generateFood(objPos blockOff);
         objPos getFoodPos() const;
 };

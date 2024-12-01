@@ -14,6 +14,19 @@ Food::~Food()
     
 }
 
+//		Copy Constructor
+Food::Food(const Food &d) {
+	//DEEP COPY
+    foodPos.setObjPos(d.foodPos.getObjPos().pos->x, d.foodPos.getObjPos().pos->y, d.foodPos.getSymbol());
+}
+
+//		Copy Assignment Operator
+Food& Food::operator = (const Food& d) {
+		this->foodPos = d.foodPos;
+		return *this;
+	
+}
+
 void Food::generateFood(objPos blockOff)
 {
     srand((unsigned int)time(NULL));

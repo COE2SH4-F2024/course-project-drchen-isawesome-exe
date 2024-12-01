@@ -79,7 +79,7 @@ void RunLogic(void)
         player->updatePlayerDir();
     }
 
-    player->movePlayer();
+    player->movePlayer(food);
     gm->clearInput();
 }
 
