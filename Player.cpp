@@ -188,7 +188,7 @@ void Player::movePlayer(Food* food)
 
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
-                food->generateFood(playerPosList->getHeadElement());
+                food->generateFood(playerPosList);
                 break;
             } else {
                 playerPosList->removeTail();
@@ -202,7 +202,7 @@ void Player::movePlayer(Food* food)
             }
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
-                food->generateFood(playerPosList->getHeadElement());
+                food->generateFood(playerPosList);
                 break;
             } else {
                 playerPosList->removeTail();
@@ -216,7 +216,7 @@ void Player::movePlayer(Food* food)
             }
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
-                food->generateFood(playerPosList->getHeadElement());
+                food->generateFood(playerPosList);
                 break;
             } else {
                 playerPosList->removeTail();
@@ -230,7 +230,7 @@ void Player::movePlayer(Food* food)
             }
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
-                food->generateFood(playerPosList->getHeadElement());
+                food->generateFood(playerPosList);
                 break;
             } else {
                 playerPosList->removeTail();

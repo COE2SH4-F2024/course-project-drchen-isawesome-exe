@@ -60,7 +60,7 @@ void Initialize(void)
 
     // food->generateFood(player->getPlayerPos());
 
-    food->generateFood(player->getPlayerPos()->getHeadElement()); //this will only block off the head element I think lol
+    food->generateFood(player->getPlayerPos()); 
 
 }
 

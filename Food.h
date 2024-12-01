@@ -22,7 +22,7 @@ class Food
         Food(const Food& d);
 		Food& operator = (const Food& d);
 
-        void generateFood(objPos blockOff);
+        void generateFood(objPosArrayList* playerPosListRef);
         objPos getFoodPos() const;
 };
 

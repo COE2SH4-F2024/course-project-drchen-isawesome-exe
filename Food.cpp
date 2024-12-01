@@ -27,15 +27,27 @@ Food& Food::operator = (const Food& d) {
 	
 }
 
-void Food::generateFood(objPos blockOff)
+void Food::generateFood(objPosArrayList* playerPosListRef)
 {
+    int overlap = true;
     srand((unsigned int)time(NULL));
-    do {
+
+    do 
+    {
+        overlap = false;
         int randX = (rand() % (30-2)) + 1; // change to work with any board size
         int randY = (rand() % (15-2)) + 1; // change to work with any board size
 
+        for(int i = 0; i < playerPosListRef->getSize(); i++)
+        {
+            if(playerPosListRef->getElement(i).getObjPos().pos->x == randX && playerPosListRef->getElement(i).getObjPos().pos->y == randY)
+            {
+                overlap = true;
+            }
+        }
         foodPos.setObjPos(randX, randY, 'o');
-    } while(foodPos.pos->x == blockOff.pos->x && foodPos.pos->y == blockOff.pos->y);
+    } while(overlap == true);
+    
 }
 
 objPos Food:: getFoodPos() const
