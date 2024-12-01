@@ -51,11 +51,63 @@ Player::~Player()
     // delete any heap members here
 }
 
+//		Copy Constructor
+// Player::Player(const Food &d) {
+// 	//DEEP COPY
+//     playerPosList = new objPosArrayList;
+//     myDir = STOP;
+
+//     playerPosList = new objPosArrayList;
+//     objPos listPos; //free at some point
+
+//     listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+//     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//     listPos.symbol = '*'; 
+
+//     // the following two objPos are to test the snake movement with different sizes....
+
+//     objPos listPos2;
+//     listPos2.pos->x = mainGameMechsRef -> getBoardSizeX()/2+1;
+//     listPos2.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//     listPos2.symbol = '*';
+
+//     objPos listPos3;
+//     listPos3.pos->x = mainGameMechsRef -> getBoardSizeX()/2+2;
+//     listPos3.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//     listPos3.symbol = '*';
+
+//     objPos listPos4;
+//     listPos4.pos->x = mainGameMechsRef -> getBoardSizeX()/2+3;
+//     listPos4.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//     listPos4.symbol = '*';
+
+//     objPos listPos5;
+//     listPos5.pos->x = mainGameMechsRef -> getBoardSizeX()/2+4;
+//     listPos5.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
+//     listPos5.symbol = '*';
+
+//     playerPosList->insertHead(listPos);
+//     playerPosList->insertHead(listPos2);
+//     playerPosList->insertHead(listPos3);
+//     playerPosList->insertHead(listPos4);
+//     playerPosList->insertHead(listPos5);
+
+// }
+
+//		Copy Assignment Operator
+// Food& Food::operator = (const Food& d) {
+// 		this->foodPos = d.foodPos;
+// 		return *this;
+	
+// }
+
 objPosArrayList* const Player::getPlayerPos() {
     // return the reference to the playerPos arrray list
     // return playerPos;
     return playerPosList;
     }
+
+
 
 void Player::updatePlayerDir()
 {
@@ -189,6 +241,7 @@ void Player::movePlayer(Food* food)
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
+                mainGameMechsRef->incrementScore();
                 break;
             } else {
                 playerPosList->removeTail();
@@ -203,6 +256,7 @@ void Player::movePlayer(Food* food)
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
+                mainGameMechsRef->incrementScore();
                 break;
             } else {
                 playerPosList->removeTail();
@@ -217,6 +271,7 @@ void Player::movePlayer(Food* food)
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
+                mainGameMechsRef->incrementScore();
                 break;
             } else {
                 playerPosList->removeTail();
@@ -231,6 +286,7 @@ void Player::movePlayer(Food* food)
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
+                mainGameMechsRef->incrementScore();
                 break;
             } else {
                 playerPosList->removeTail();

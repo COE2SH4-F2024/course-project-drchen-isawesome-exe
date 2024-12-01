@@ -1,5 +1,6 @@
 #include "GameMechs.h"
 #include "MacUILib.h"
+#include "Player.h"
 
 GameMechs::GameMechs()
 {

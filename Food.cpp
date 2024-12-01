@@ -47,7 +47,6 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
         }
         foodPos.setObjPos(randX, randY, 'o');
     } while(overlap == true);
-    
 }
 
 objPos Food:: getFoodPos() const
