@@ -231,6 +231,19 @@ void Player::movePlayer(Food* food)
     switch(myDir){
         case LEFT:
         // default:
+            // check for lose condition
+            for(int i = 1; i < playerPosList->getSize(); i++)
+            {
+                if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
+                {
+                    mainGameMechsRef->setLoseFlag();
+                    mainGameMechsRef->setExitTrue();
+                }
+            }
+
+            if(mainGameMechsRef->getLoseFlagStatus() == true)
+                break;
+            
             if(playerPosList->getHeadElement().pos->x == 1){
                 playerPosList->insertHead(caseLeftWrap);
             } else
@@ -247,7 +260,22 @@ void Player::movePlayer(Food* food)
                 playerPosList->removeTail();
                 break;
             }
+
+
         case RIGHT:
+                    // check for lose condition
+            for(int i = 1; i < playerPosList->getSize(); i++)
+            {
+                if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
+                {
+                    mainGameMechsRef->setLoseFlag();
+                    mainGameMechsRef->setExitTrue();
+                }
+            }
+
+            if(mainGameMechsRef->getLoseFlagStatus() == true)
+                break;
+
             if(playerPosList->getHeadElement().pos->x >= mainGameMechsRef->getBoardSizeX()-2){
                 playerPosList->insertHead(caseRightWrap);
             } else {  
@@ -263,6 +291,19 @@ void Player::movePlayer(Food* food)
                 break;
             }
         case DOWN:
+                    // check for lose condition
+            for(int i = 1; i < playerPosList->getSize(); i++)
+            {
+                if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
+                {
+                    mainGameMechsRef->setLoseFlag();
+                    mainGameMechsRef->setExitTrue();
+                }
+            }
+
+            if(mainGameMechsRef->getLoseFlagStatus() == true)
+                break;
+
             if(playerPosList->getHeadElement().pos->y >= mainGameMechsRef->getBoardSizeY()-2){
                 playerPosList->insertHead(caseDownWrap);
             } else {
@@ -278,6 +319,19 @@ void Player::movePlayer(Food* food)
                 break;
             }
         case UP:
+                    // check for lose condition
+            for(int i = 1; i < playerPosList->getSize(); i++)
+            {
+                if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
+                {
+                    mainGameMechsRef->setLoseFlag();
+                    mainGameMechsRef->setExitTrue();
+                }
+            }
+
+            if(mainGameMechsRef->getLoseFlagStatus() == true)
+                break;
+                
             if(playerPosList->getHeadElement().pos->y == 1){
                 playerPosList->insertHead(caseUpWrap);
             } else {
