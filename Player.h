@@ -12,8 +12,10 @@ class Player
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
         Player(GameMechs* thisGMRef);
+        
         ~Player(); 
-        // Player(const Player &p);     
+        Player(const Player &p); 
+        Player& operator = (const Player& p);    
         
         objPosArrayList* const getPlayerPos();
 

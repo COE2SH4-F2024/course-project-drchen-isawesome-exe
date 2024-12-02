@@ -21,25 +21,22 @@ Player::~Player()
     delete[] mainGameMechsRef;
 }
 
-// Player::Player(const Player &p) { //Copy Constructor
-// 	//DEEP COPY
-//     playerPosList = new objPosArrayList;
-//     myDir = STOP;
+Player::Player(const Player &p) //Copy Constructor
+{ 
+    playerPosList = new objPosArrayList;
+    mainGameMechsRef = p.mainGameMechsRef;
+    myDir = p.myDir;
+}
 
-//     playerPosList = new objPosArrayList;
-//     objPos listPos; //free at some point
-
-//     listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-//     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos.symbol = '*'; 
-// }
-
-//		Copy Assignment Operator
-// Food& Food::operator = (const Food& d) {
-// 		this->foodPos = d.foodPos;
-// 		return *this;
+Player& Player::operator = (const Player& p) //Copy Assignment Operator
+{
+    if(this != &p){
+        mainGameMechsRef = p.mainGameMechsRef;
+        myDir = p.myDir;
+    }
+    return *this;
 	
-// }
+}
 
 objPosArrayList* const Player::getPlayerPos() 
 {
