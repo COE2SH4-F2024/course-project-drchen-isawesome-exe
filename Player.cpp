@@ -16,19 +16,19 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList->insertHead(listPos);
 }
 
-Player::~Player()
+Player::~Player() // Destructor
 {
     delete[] mainGameMechsRef;
 }
 
-Player::Player(const Player &p) //Copy Constructor
+Player::Player(const Player &p) // Copy Constructor
 { 
     playerPosList = new objPosArrayList;
     mainGameMechsRef = p.mainGameMechsRef;
     myDir = p.myDir;
 }
 
-Player& Player::operator = (const Player& p) //Copy Assignment Operator
+Player& Player::operator = (const Player& p) // Copy Assignment Operator
 {
     if(this != &p){
         mainGameMechsRef = p.mainGameMechsRef;

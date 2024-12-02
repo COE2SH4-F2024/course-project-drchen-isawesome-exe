@@ -45,7 +45,7 @@ void Initialize(void)
 
     exitFlag = false;
 
-    gm = new GameMechs();
+    gm = new GameMechs(); // initialize objects 
     player = new Player(gm);
     food = new Food();
 
@@ -130,7 +130,7 @@ void CleanUp(void)
 {
     MacUILib_uninit();
 
-    delete [] gm;
+    delete [] gm; 
     delete [] food;
     delete [] player;
 }

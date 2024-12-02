@@ -27,8 +27,8 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
     do 
     {
         overlap = false;
-        int randX = (rand() % (30-2)) + 1; // change to work with any board size
-        int randY = (rand() % (15-2)) + 1; // change to work with any board size
+        int randX = (rand() % (30-2)) + 1; 
+        int randY = (rand() % (15-2)) + 1; 
 
         for(int i = 0; i < playerPosListRef->getSize(); i++)
         {
