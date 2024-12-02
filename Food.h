@@ -17,7 +17,6 @@ class Food
 
     public:
         Food();
-        // ~Food();
 
         Food(const Food& d);
 		Food& operator = (const Food& d);

@@ -13,7 +13,7 @@ class Player
 
         Player(GameMechs* thisGMRef);
         ~Player(); 
-        // Player(const Food &d);     
+        // Player(const Player &p);     
         
         objPosArrayList* const getPlayerPos();
 
