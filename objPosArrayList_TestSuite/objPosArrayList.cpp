@@ -41,24 +41,15 @@ int objPosArrayList::getSize() const
 
 void objPosArrayList::insertHead(objPos thisPos)
 {
-    // sanity check
     if(listSize >= ARRAY_MAX_CAP) return;
-    
-    // Data     3 5 7
-    // Index    0 1 2 3
-    // Size:          3
 
-    // Insert 9 to Head?
-    // Shuffle from Tail towards Head until i = 1
     for(int i = listSize; i > 0; i--)
     {
-        // cout << "Element to shuffle: " << aList[i-1] << endl;
         aList[i].pos->x = aList[i - 1].pos->x;
         aList[i].pos->y = aList[i - 1].pos->y;
         aList[i].symbol = aList[i - 1].symbol;
     }
     
-    // aList[0] = thisPos;
     aList[0].pos->x = thisPos.pos->x; 
     aList[0].pos->y = thisPos.pos->y;
     aList[0].symbol = thisPos.symbol;
@@ -67,12 +58,8 @@ void objPosArrayList::insertHead(objPos thisPos)
 
 void objPosArrayList::insertTail(objPos thisPos)
 {
-    // Sanity Check (error checking)
     if(listSize >= arrayCapacity) 
     {
-        // cout << "Array List Full.  No Insertion." << endl;
-        // you can also throw an exception
-
         return;
     }
     aList[listSize].pos->x = thisPos.pos->x; 
@@ -83,7 +70,6 @@ void objPosArrayList::insertTail(objPos thisPos)
 
 void objPosArrayList::removeHead()
 {
-    // sanity check
     if(listSize == 0) return;
 
     for(int i = 0; i < listSize - 1; i++){
@@ -111,18 +97,6 @@ objPos objPosArrayList::getHeadElement() const
 
 }
 
-
-// objPos objPos::getObjPos() const
-// {
-//     objPos returnPos;
-//     returnPos.pos->x = pos->x;
-//     returnPos.pos->y = pos->y;
-//     returnPos.symbol = symbol;
-    
-//     return returnPos;
-// }
-
-
 objPos objPosArrayList::getTailElement() const
 {
     objPos returnTail;
@@ -136,10 +110,6 @@ objPos objPosArrayList::getElement(int index) const
 {
 
     objPos returnElement;
-    // check if index is out of bound
-    // then apply respective updates
-    // if(index < 0) index = 0;  
-    // else if(index >= listSize) index = listSize - 1;
   
     if(index >= listSize) index = listSize - 1;
     if(index < 0) index = 0;
@@ -148,9 +118,5 @@ objPos objPosArrayList::getElement(int index) const
     returnElement.pos->y = aList[index].pos->y;
     returnElement.symbol = aList[index].symbol;
 
-    // Option: You can also "throw exceptions in C++"
-    // Option: You can also return an absurd integer to indicate error
-
-    // finally, get element
     return returnElement; 
 }

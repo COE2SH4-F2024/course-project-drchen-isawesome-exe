@@ -19,11 +19,6 @@ GameMechs::GameMechs(int boardX, int boardY)
     boardSizeY = boardY;
 }
 
-GameMechs::~GameMechs()
-{
-    
-}
-
 bool GameMechs::getExitFlagStatus() const
 {
     return exitFlag;
@@ -34,8 +29,7 @@ bool GameMechs::getLoseFlagStatus() const
     return loseFlag;
 }
     
-
-char GameMechs::getInput() // const // remove const??
+char GameMechs::getInput() 
 {
     return input;
 }
@@ -59,7 +53,6 @@ int GameMechs::getBoardSizeY() const
 {
     return boardSizeY;
 }
-
 
 void GameMechs::setExitTrue()
 {

@@ -9,22 +9,14 @@ Food::Food()
     foodPos.setObjPos(0, 0, 'o');
 }
 
-Food::~Food()
-{
-    
-}
-
-//		Copy Constructor
-Food::Food(const Food &d) {
+Food::Food(const Food &d) { // Copy Constructor
 	//DEEP COPY
     foodPos.setObjPos(d.foodPos.getObjPos().pos->x, d.foodPos.getObjPos().pos->y, d.foodPos.getSymbol());
 }
 
-//		Copy Assignment Operator
-Food& Food::operator = (const Food& d) {
+Food& Food::operator = (const Food& d) { // Copy Assignment Operator
 		this->foodPos = d.foodPos;
 		return *this;
-	
 }
 
 void Food::generateFood(objPosArrayList* playerPosListRef)
@@ -35,8 +27,8 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
     do 
     {
         overlap = false;
-        int randX = (rand() % (30-2)) + 1; // change to work with any board size
-        int randY = (rand() % (15-2)) + 1; // change to work with any board size
+        int randX = (rand() % (30-2)) + 1; 
+        int randY = (rand() % (15-2)) + 1; 
 
         for(int i = 0; i < playerPosListRef->getSize(); i++)
         {

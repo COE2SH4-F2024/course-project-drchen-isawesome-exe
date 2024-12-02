@@ -7,188 +7,80 @@ Player::Player(GameMechs* thisGMRef)
     myDir = STOP;
 
     playerPosList = new objPosArrayList;
-    objPos listPos; //free at some point
+    objPos listPos;
 
     listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
     listPos.symbol = '*'; 
 
-    // the following two objPos are to test the snake movement with different sizes....
-
-    objPos listPos2;
-    listPos2.pos->x = mainGameMechsRef -> getBoardSizeX()/2+1;
-    listPos2.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    listPos2.symbol = '*';
-
-    objPos listPos3;
-    listPos3.pos->x = mainGameMechsRef -> getBoardSizeX()/2+2;
-    listPos3.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    listPos3.symbol = '*';
-
-    objPos listPos4;
-    listPos4.pos->x = mainGameMechsRef -> getBoardSizeX()/2+3;
-    listPos4.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    listPos4.symbol = '*';
-
-    objPos listPos5;
-    listPos5.pos->x = mainGameMechsRef -> getBoardSizeX()/2+4;
-    listPos5.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-    listPos5.symbol = '*';
-
     playerPosList->insertHead(listPos);
-    playerPosList->insertHead(listPos2);
-    playerPosList->insertHead(listPos3);
-    playerPosList->insertHead(listPos4);
-    playerPosList->insertHead(listPos5);
-
-    // more actions to be included
-
 }
 
-Player::~Player()
+Player::~Player() // Destructor
 {
     delete[] mainGameMechsRef;
-    // delete any heap members here
 }
 
-//		Copy Constructor
-// Player::Player(const Food &d) {
-// 	//DEEP COPY
-//     playerPosList = new objPosArrayList;
-//     myDir = STOP;
+Player::Player(const Player &p) // Copy Constructor
+{ 
+    playerPosList = new objPosArrayList;
+    mainGameMechsRef = p.mainGameMechsRef;
+    myDir = p.myDir;
+}
 
-//     playerPosList = new objPosArrayList;
-//     objPos listPos; //free at some point
-
-//     listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
-//     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos.symbol = '*'; 
-
-//     // the following two objPos are to test the snake movement with different sizes....
-
-//     objPos listPos2;
-//     listPos2.pos->x = mainGameMechsRef -> getBoardSizeX()/2+1;
-//     listPos2.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos2.symbol = '*';
-
-//     objPos listPos3;
-//     listPos3.pos->x = mainGameMechsRef -> getBoardSizeX()/2+2;
-//     listPos3.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos3.symbol = '*';
-
-//     objPos listPos4;
-//     listPos4.pos->x = mainGameMechsRef -> getBoardSizeX()/2+3;
-//     listPos4.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos4.symbol = '*';
-
-//     objPos listPos5;
-//     listPos5.pos->x = mainGameMechsRef -> getBoardSizeX()/2+4;
-//     listPos5.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
-//     listPos5.symbol = '*';
-
-//     playerPosList->insertHead(listPos);
-//     playerPosList->insertHead(listPos2);
-//     playerPosList->insertHead(listPos3);
-//     playerPosList->insertHead(listPos4);
-//     playerPosList->insertHead(listPos5);
-
-// }
-
-//		Copy Assignment Operator
-// Food& Food::operator = (const Food& d) {
-// 		this->foodPos = d.foodPos;
-// 		return *this;
-	
-// }
-
-objPosArrayList* const Player::getPlayerPos() {
-    // return the reference to the playerPos arrray list
-    // return playerPos;
-    return playerPosList;
+Player& Player::operator = (const Player& p) // Copy Assignment Operator
+{
+    if(this != &p){
+        mainGameMechsRef = p.mainGameMechsRef;
+        myDir = p.myDir;
     }
+    return *this;
+	
+}
 
-
+objPosArrayList* const Player::getPlayerPos() 
+{
+    return playerPosList;
+}
 
 void Player::updatePlayerDir()
 {
-        // PPA3 input processing logic
-
-    if(mainGameMechsRef->getInput() != 0)  // if not null character... MIGHT NOT NEED THIS CONDITION SINCE ITS IN THE MAIN FUNCTION TOO!
-    {
-        switch(mainGameMechsRef->getInput())
-        {                 
-
-            // Add more key processing here
-            case 'a':
-            default:
-                if(myDir!=RIGHT){
+    switch(mainGameMechsRef->getInput())
+    {                 
+        case 'a':
+        default:
+            if(myDir!=RIGHT){
                 myDir = LEFT;
-                break;
-            case 'd':
-                if(myDir!=LEFT){
+            }
+            break;
+        case 'd':
+            if(myDir!=LEFT){
                 myDir = RIGHT;
-                }
-                break;
-            case 'w':
-                if(myDir!=DOWN){
-                    myDir = UP;
-                }
-                break;
-            case 's':
-                if(myDir!=UP){
+            }
+            break;
+        case 'w':
+            if(myDir!=DOWN){
+                myDir = UP;
+            }
+            break;
+        case 's':
+            if(myDir!=UP){
                 myDir = DOWN;
-                }
-                break;
-
-        }
-
-        mainGameMechsRef->setInput(0);
+            }
+            break;
     }
-
-}
+    mainGameMechsRef->setInput(0);
 }
 
 void Player::movePlayer(Food* food)
 {
-    // PPA3 Finite State Machine logic
-
-    // if(playerPos.pos->x > mainGameMechsRef->getBoardSizeX()){
-    //     playerPos.pos->x = 1;
-    // }
-    // if(playerPos.pos->x < 1){
-    //     playerPos.pos->x = mainGameMechsRef->getBoardSizeX();
-    // }
-
-    // if(playerPos.pos->y > mainGameMechsRef->getBoardSizeY()){
-    //     playerPos.pos->y = 1;
-    // }
-    // if(playerPos.pos->y < 1){
-    //     playerPos.pos->y = mainGameMechsRef->getBoardSizeY();
-    // }
-
-    // if(playerPosList->getHeadElement().pos->x > mainGameMechsRef->getBoardSizeX()-2){
-    //     playerPosList->getHeadElement().pos->x = 1;
-    // }
-    // if(playerPosList->getHeadElement().pos->x == 1){
-    //     playerPosList->getHeadElement().pos->x = mainGameMechsRef->getBoardSizeX()-2;
-    // }
-
-    // if(playerPosList->getHeadElement().pos->y > mainGameMechsRef->getBoardSizeY()-2){
-    //     playerPosList->getHeadElement().pos->y = 1;
-    // }
-    // if(playerPosList->getHeadElement().pos->y == 1){
-    //     playerPosList->getHeadElement().pos->y = mainGameMechsRef->getBoardSizeY()-2;
-    // }
-
-
-    // the following four objPos objects determine the position of the new head element
-    // depending on what direction the snake is going in
+    // the following eight objPos objects determine the position of the new head element
+    // depending on what direction the snake is going in and if the snake is wrapping around the board
 
     objPos caseLeft;
     caseLeft.pos->x = playerPosList->getHeadElement().pos->x-1;
     caseLeft.pos->y = playerPosList->getHeadElement().pos->y;
     caseLeft.symbol = playerPosList->getHeadElement().symbol;
-    // caseLeft.symbol = '-';
 
     objPos caseLeftWrap;
     caseLeftWrap.pos->x = mainGameMechsRef->getBoardSizeX()-2;
@@ -199,7 +91,6 @@ void Player::movePlayer(Food* food)
     caseRight.pos->x = playerPosList->getHeadElement().pos->x+1;
     caseRight.pos->y = playerPosList->getHeadElement().pos->y;
     caseRight.symbol = playerPosList->getHeadElement().symbol;
-    // caseRight.symbol = '-';
 
     objPos caseRightWrap;
     caseRightWrap.pos->x = 1;
@@ -210,7 +101,6 @@ void Player::movePlayer(Food* food)
     caseDown.pos->x = playerPosList->getHeadElement().pos->x;
     caseDown.pos->y = playerPosList->getHeadElement().pos->y+1;
     caseDown.symbol = playerPosList->getHeadElement().symbol;
-    // caseDown.symbol = '-';
 
     objPos caseDownWrap;
     caseDownWrap.pos->x = playerPosList->getHeadElement().pos->x;
@@ -221,7 +111,6 @@ void Player::movePlayer(Food* food)
     caseUp.pos->x = playerPosList->getHeadElement().pos->x;
     caseUp.pos->y = playerPosList->getHeadElement().pos->y-1;
     caseUp.symbol = playerPosList->getHeadElement().symbol;
-    // caseUp.symbol = '-';
 
     objPos caseUpWrap;
     caseUpWrap.pos->x = playerPosList->getHeadElement().pos->x;
@@ -230,8 +119,7 @@ void Player::movePlayer(Food* food)
 
     switch(myDir){
         case LEFT:
-        // default:
-            // check for lose condition
+
             for(int i = 1; i < playerPosList->getSize(); i++)
             {
                 if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
@@ -240,17 +128,15 @@ void Player::movePlayer(Food* food)
                     mainGameMechsRef->setExitTrue();
                 }
             }
-
             if(mainGameMechsRef->getLoseFlagStatus() == true)
                 break;
             
-            if(playerPosList->getHeadElement().pos->x == 1){
-                playerPosList->insertHead(caseLeftWrap);
-            } else
+            if(playerPosList->getHeadElement().pos->x == 1)
             {
+                playerPosList->insertHead(caseLeftWrap);
+            } else {
                 playerPosList->insertHead(caseLeft);
             }
-
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
@@ -260,7 +146,6 @@ void Player::movePlayer(Food* food)
                 playerPosList->removeTail();
                 break;
             }
-
 
         case RIGHT:
                     // check for lose condition
@@ -290,6 +175,7 @@ void Player::movePlayer(Food* food)
                 playerPosList->removeTail();
                 break;
             }
+
         case DOWN:
                     // check for lose condition
             for(int i = 1; i < playerPosList->getSize(); i++)
@@ -318,6 +204,7 @@ void Player::movePlayer(Food* food)
                 playerPosList->removeTail();
                 break;
             }
+
         case UP:
                     // check for lose condition
             for(int i = 1; i < playerPosList->getSize(); i++)
@@ -346,36 +233,10 @@ void Player::movePlayer(Food* food)
                 playerPosList->removeTail();
                 break;
             }
+
         case STOP:
             break;
     }
-
-    // switch(myDir){
-    //     case LEFT:
-    //     // default:
-    //         playerPosList->insertHead(caseLeft);
-    //         playerPosList->removeTail();
-    //         break;
-    //     case RIGHT:
-    //         if(playerPosList->getHeadElement().pos->x > mainGameMechsRef->getBoardSizeX()-2){
-    //     playerPosList->getHeadElement().pos->x = 1;
-    //         } else {  
-    //         playerPosList->insertHead(caseRight);
-    //         playerPosList->removeTail();
-    //         }
-    //         break;
-    //     case DOWN:
-    //         playerPosList->insertHead(caseDown);
-    //         playerPosList->removeTail();
-    //         break;
-    //     case UP:
-    //         playerPosList->insertHead(caseUp);
-    //         playerPosList->removeTail();
-    //         break;
-    //     case STOP:
-    //         break;
-    // }
 }
 
-// More methods to be added
 

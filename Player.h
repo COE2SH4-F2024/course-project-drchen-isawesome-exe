@@ -7,37 +7,27 @@
 #include "Food.h"
 
 class Player
-{
-    // Construct the remaining declaration from the project manual.
-
-    // Only some sample members are included here
-
-    // You will include more data members and member functions to complete your design.
-
-    
+{   
     public:
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
         Player(GameMechs* thisGMRef);
-        ~Player();
 
-        // objPos getPlayerPos() const; // Upgrade this in iteration 3.       
+        ~Player(); // Destructor
+        Player(const Player &p); // Copy Constructor
+        Player& operator = (const Player& p); // Copy Assignment Constructor
         
         objPosArrayList* const getPlayerPos();
 
         void updatePlayerDir();
         void movePlayer(Food* food);
 
-        // More methods to be added here
-
     private:
-        // objPos playerPos; // Upgrade this in iteration 3. 
     
         objPosArrayList* playerPosList;
 
         enum Dir myDir;
 
-        // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
         Food* foodRef;
 };
