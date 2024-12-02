@@ -16,13 +16,9 @@ objPos::objPos(int xPos, int yPos, char sym)
     symbol = sym;
 }
 
-// Respect the rule of six / minimum four
-// [TODO] Implement the missing special member functions to meet the minimum four rule
-
 objPos::~objPos()
 {
     delete[] pos;
-//do I need to individually delete pos.x and pos.y?
 }
 
 objPos::objPos(const objPos &o)

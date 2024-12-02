@@ -9,10 +9,10 @@ Food::Food()
     foodPos.setObjPos(0, 0, 'o');
 }
 
-Food::~Food()
-{
+// Food::~Food()
+// {
     
-}
+// }
 
 //		Copy Constructor
 Food::Food(const Food &d) {

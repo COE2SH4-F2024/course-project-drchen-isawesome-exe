@@ -1,9 +1,5 @@
 #include "objPosArrayList.h"
 
-// Paste your Tested implementation here.
-// Paste your Tested implementation here.
-// Paste your Tested implementation here.
-
 objPosArrayList::objPosArrayList()
 {
     aList = new objPos[ARRAY_MAX_CAP];
@@ -12,7 +8,6 @@ objPosArrayList::objPosArrayList()
     aList[0].pos->x = 0;
     aList[0].pos->y = 0;
     aList[0].symbol = 0;
-
 }
 
 objPosArrayList::~objPosArrayList()
@@ -42,7 +37,6 @@ int objPosArrayList::getSize() const
 
 void objPosArrayList::insertHead(objPos thisPos)
 {
-    // sanity check
     if(listSize >= ARRAY_MAX_CAP) return;
     
     for(int i = listSize; i > 0; i--)
@@ -60,7 +54,6 @@ void objPosArrayList::insertHead(objPos thisPos)
 
 void objPosArrayList::insertTail(objPos thisPos)
 {
-    // Sanity Check (error checking)
     if(listSize >= arrayCapacity) 
     {
         return;
@@ -74,7 +67,6 @@ void objPosArrayList::insertTail(objPos thisPos)
 
 void objPosArrayList::removeHead()
 {
-    // sanity check
     if(listSize == 0) return;
 
     for(int i = 0; i < listSize - 1; i++){
@@ -83,7 +75,6 @@ void objPosArrayList::removeHead()
         aList[i].symbol = aList[i + 1].symbol;
     }
     listSize--;
-
 }
 
 void objPosArrayList::removeTail()
@@ -99,20 +90,7 @@ objPos objPosArrayList::getHeadElement() const
     returnHead.pos->y = aList[0].pos->y;
     returnHead.symbol = aList[0].symbol;
     return returnHead; 
-
 }
-
-
-// objPos objPos::getObjPos() const
-// {
-//     objPos returnPos;
-//     returnPos.pos->x = pos->x;
-//     returnPos.pos->y = pos->y;
-//     returnPos.symbol = symbol;
-    
-//     return returnPos;
-// }
-
 
 objPos objPosArrayList::getTailElement() const
 {
@@ -125,13 +103,7 @@ objPos objPosArrayList::getTailElement() const
 
 objPos objPosArrayList::getElement(int index) const
 {
-
     objPos returnElement;
-
-    // check if index is out of bound
-    // then apply respective updates
-    // if(index < 0) index = 0;  
-    // else if(index >= listSize) index = listSize - 1;
   
     if(index >= listSize) index = listSize - 1;
     if(index < 0) index = 0;
