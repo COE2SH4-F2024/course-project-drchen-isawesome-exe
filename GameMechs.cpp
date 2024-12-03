@@ -2,7 +2,7 @@
 #include "MacUILib.h"
 #include "Player.h"
 
-GameMechs::GameMechs()
+GameMechs::GameMechs() // default constructor
 {
     input = 0;
     score = 0;
@@ -13,7 +13,7 @@ GameMechs::GameMechs()
     boardSizeY = 15;
 }
 
-GameMechs::GameMechs(int boardX, int boardY)
+GameMechs::GameMechs(int boardX, int boardY) // constructor with set board size
 {
     input = 0;
     score = 0;

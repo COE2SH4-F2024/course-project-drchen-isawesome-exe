@@ -49,6 +49,7 @@ void Initialize(void)
     player = new Player(gm);
     food = new Food();
 
+    // generate food anywhere but the player position
     food->generateFood(player->getPlayerPos()); 
 }
 
