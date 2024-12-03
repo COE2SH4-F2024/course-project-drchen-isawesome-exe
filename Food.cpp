@@ -27,7 +27,7 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
     do 
     {
         overlap = false;
-        int randX = (rand() % (30-2)) + 1; 
+        int randX = (rand() % (30-2)) + 1; // generate random x and  y position for food
         int randY = (rand() % (15-2)) + 1; 
 
         for(int i = 0; i < playerPosListRef->getSize(); i++)
@@ -38,7 +38,7 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
             }
         }
         foodPos.setObjPos(randX, randY, 'o');
-    } while(overlap == true);
+    } while(overlap == true); // do-while loop to ensure food is not generated on top of snake
 }
 
 objPos Food:: getFoodPos() const

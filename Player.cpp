@@ -9,7 +9,7 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList = new objPosArrayList;
     objPos listPos;
 
-    listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2;
+    listPos.pos->x = mainGameMechsRef -> getBoardSizeX()/2; // starts snake in middle of the board
     listPos.pos->y = mainGameMechsRef -> getBoardSizeY()/2;
     listPos.symbol = '*'; 
 
@@ -19,6 +19,8 @@ Player::Player(GameMechs* thisGMRef)
 Player::~Player() // Destructor
 {
     delete[] mainGameMechsRef;
+    delete[] foodRef;
+    delete[] playerPosList;
 }
 
 Player::Player(const Player &p) // Copy Constructor
@@ -47,7 +49,7 @@ void Player::updatePlayerDir()
 {
     switch(mainGameMechsRef->getInput())
     {                 
-        case 'a':
+        case 'a': // use keys a,w,s,d to control direction of snake
         default:
             if(myDir!=RIGHT){
                 myDir = LEFT;
@@ -119,7 +121,7 @@ void Player::movePlayer(Food* food)
 
     switch(myDir){
         case LEFT:
-
+                // check for lose condition
             for(int i = 1; i < playerPosList->getSize(); i++)
             {
                 if(playerPosList->getElement(i).pos->x == playerPosList->getHeadElement().pos->x && playerPosList->getElement(i).pos->y == playerPosList->getHeadElement().pos->y)
@@ -130,13 +132,14 @@ void Player::movePlayer(Food* food)
             }
             if(mainGameMechsRef->getLoseFlagStatus() == true)
                 break;
-            
+                // move snake 
             if(playerPosList->getHeadElement().pos->x == 1)
             {
                 playerPosList->insertHead(caseLeftWrap);
             } else {
                 playerPosList->insertHead(caseLeft);
             }
+                // detect collision and increment score
             if (playerPosList->getHeadElement().pos->x == food->getFoodPos().pos->x && playerPosList->getHeadElement().pos->y == food->getFoodPos().pos->y)
             {
                 food->generateFood(playerPosList);
@@ -157,7 +160,6 @@ void Player::movePlayer(Food* food)
                     mainGameMechsRef->setExitTrue();
                 }
             }
-
             if(mainGameMechsRef->getLoseFlagStatus() == true)
                 break;
 
@@ -186,7 +188,6 @@ void Player::movePlayer(Food* food)
                     mainGameMechsRef->setExitTrue();
                 }
             }
-
             if(mainGameMechsRef->getLoseFlagStatus() == true)
                 break;
 
@@ -215,7 +216,6 @@ void Player::movePlayer(Food* food)
                     mainGameMechsRef->setExitTrue();
                 }
             }
-
             if(mainGameMechsRef->getLoseFlagStatus() == true)
                 break;
                 

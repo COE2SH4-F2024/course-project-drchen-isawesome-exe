@@ -14,10 +14,10 @@ class objPosArrayList
 
     public:
         objPosArrayList();
-        ~objPosArrayList();
+        ~objPosArrayList(); // destructor
 
-        objPosArrayList(const objPosArrayList &o);
-        objPosArrayList& operator=(const objPosArrayList &o);
+        objPosArrayList(const objPosArrayList &o); // copy constructor 
+        objPosArrayList& operator=(const objPosArrayList &o); // copy assignment constructor
 
         int getSize() const;
         void insertHead(objPos thisPos);

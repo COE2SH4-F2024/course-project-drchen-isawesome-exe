@@ -17,10 +17,10 @@ class objPos
         objPos();
         objPos(int xPos, int yPos, char sym);
 
-        ~objPos();
+        ~objPos(); // destructor
 
-        objPos(const objPos &o);
-        objPos& operator=(const objPos &o);
+        objPos(const objPos &o); // copy constructor 
+        objPos& operator=(const objPos &o); // copy assignment constructor
 
         void setObjPos(objPos o);        
         void setObjPos(int xPos, int yPos, char sym);  

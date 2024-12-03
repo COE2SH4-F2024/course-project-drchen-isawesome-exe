@@ -26,8 +26,8 @@ class GameMechs
         GameMechs();
         GameMechs(int boardX, int boardY);
 
-        GameMechs(const GameMechs& d);
-		GameMechs& operator = (const GameMechs& d);
+        GameMechs(const GameMechs& d); // copy constructor
+		GameMechs& operator = (const GameMechs& d); // copy assignment constructor 
 
         bool getExitFlagStatus() const; 
         void setExitTrue();
@@ -43,8 +43,6 @@ class GameMechs
         
         int getScore() const;
         void incrementScore();
-
-        void drawScreen();
 };
 
 #endif
