@@ -26,6 +26,9 @@ class GameMechs
         GameMechs();
         GameMechs(int boardX, int boardY);
 
+        GameMechs(const GameMechs& d);
+		GameMechs& operator = (const GameMechs& d);
+
         bool getExitFlagStatus() const; 
         void setExitTrue();
         bool getLoseFlagStatus() const;

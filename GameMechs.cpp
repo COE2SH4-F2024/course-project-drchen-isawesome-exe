@@ -15,8 +15,35 @@ GameMechs::GameMechs()
 
 GameMechs::GameMechs(int boardX, int boardY)
 {
+    input = 0;
+    score = 0;
+    exitFlag = false;
+    loseFlag = false;
+
     boardSizeX = boardX;
     boardSizeY = boardY;
+}
+
+GameMechs::GameMechs(const GameMechs &d) { // Copy Constructor
+	//DEEP COPY
+    input = d.input;
+    score = d.score;
+    exitFlag = d.exitFlag;
+    loseFlag = d.loseFlag;
+
+    boardSizeX = d.boardSizeX;
+    boardSizeY = d.boardSizeY;
+}
+
+GameMechs& GameMechs::operator = (const GameMechs& d) { // Copy Assignment Operator
+		this->input = d.input;
+        this->score = d.score;
+        this->exitFlag = d.exitFlag;
+        this->loseFlag = d.loseFlag;
+
+        this->boardSizeX = d.boardSizeX;
+        this->boardSizeY = d.boardSizeY;
+		return *this;
 }
 
 bool GameMechs::getExitFlagStatus() const
