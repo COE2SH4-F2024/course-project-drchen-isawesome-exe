@@ -16,7 +16,7 @@ objPos::objPos(int xPos, int yPos, char sym)
     symbol = sym;
 }
 
-objPos::~objPos()
+objPos::~objPos() // destructor
 {
     delete[] pos;
 }

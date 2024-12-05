@@ -4,9 +4,9 @@
 #include "objPos.h"
 #include "GameMechs.h"
 
-Food::Food()
+Food::Food() // constructor
 {
-    foodPos.setObjPos(0, 0, 'o');
+    foodPos.setObjPos(5, 5, 'o'); 
 }
 
 Food::Food(const Food &d) { // Copy Constructor
@@ -31,7 +31,7 @@ void Food::generateFood(objPosArrayList* playerPosListRef)
         int randY = (rand() % (15-2)) + 1; 
 
         for(int i = 0; i < playerPosListRef->getSize(); i++)
-        {
+        { // check for overlap
             if(playerPosListRef->getElement(i).getObjPos().pos->x == randX && playerPosListRef->getElement(i).getObjPos().pos->y == randY)
             {
                 overlap = true;
